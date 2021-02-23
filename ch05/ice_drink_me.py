@@ -6,23 +6,24 @@ for i in range(n):
 
 
 def dfs(x, y):
-    if x <= -1 or x >= n or y <= -1 or y >= m:
-        return False
+    if x < 0 or y < 0 or x > n - 1 or y > n - 1:
+        return 0
 
     if graph[x][y] == 0:
         graph[x][y] = 1
-        dfs(x, y - 1)
         dfs(x + 1, y)
-        dfs(x, y + 1)
         dfs(x - 1, y)
-        return True
+        dfs(x, y + 1)
+        dfs(x, y - 1)
+        return 1
 
-    return False
+    return 0
 
 
 result = 0
 for i in range(n):
     for j in range(m):
-        if dfs(i, j) == True:
+        if dfs(i, j) == 1:
             result += 1
+
 print(result)
